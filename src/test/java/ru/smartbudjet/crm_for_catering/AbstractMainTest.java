@@ -76,4 +76,7 @@ public abstract class AbstractMainTest {
 //        rabbitMQContainer.start();
     }
 
+    public ObjectMapper getMapper() {
+        return mapper;
+    }
 }
