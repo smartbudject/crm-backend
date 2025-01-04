@@ -4,7 +4,7 @@ databaseChangeLog:
       author: yourname
       changes:
         - createTable:
-            tableName: users
+            tableName: account
             columns:
               - column:
                   name: id
@@ -18,7 +18,21 @@ databaseChangeLog:
                   type: VARCHAR(50)
                   constraints:
                     nullable: false
-                    unique: true
+              - column:
+                  name: last_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: second_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
               - column:
                   name: email
                   type: VARCHAR(100)
@@ -34,4 +48,10 @@ databaseChangeLog:
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
+                    nullable: false
+              - column:
+                  name: is_non_locked
+                  type: boolean
+                  constraints:
+                    defaultValueComputed: false
                     nullable: false
