@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: scripts/0000-init-table.yml
+      relativeToChangelogFile: true
