@@ -42,7 +42,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.isNonLocked();
+        return true;
     }
 
     @Override
@@ -52,6 +52,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.getEnable();
+        return true;
     }
 }

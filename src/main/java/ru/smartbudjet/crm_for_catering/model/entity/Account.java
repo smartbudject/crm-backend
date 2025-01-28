@@ -15,15 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "account")
 public class Account extends AbstractEntity{
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "second_name")
-    private String secondName;
-
     @Column(name = "email")
     private String email;
 
@@ -36,23 +27,12 @@ public class Account extends AbstractEntity{
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "enabled")
-    private Boolean enable;
-
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Column(name = "is_non_locked")
-    private boolean isNonLocked;
-
-    @Transient
-    private boolean isAdmin;
-
-
-    public boolean isAdmin() {
-        return role != null && role.getName().equals("ROLE_ADMIN");
-    }
+    @Version
+    private Integer version;
 
     public Account setId(Long id) {
         super.setId(id);
