@@ -59,6 +59,9 @@ databaseChangeLog:
                   name: gender
                   type: BOOLEAN
               - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -86,6 +89,12 @@ databaseChangeLog:
                   name: price
                   type: DOUBLE
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -110,6 +119,12 @@ databaseChangeLog:
                   name: price
                   type: DOUBLE
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -125,6 +140,12 @@ databaseChangeLog:
                   type: BIGINT
               - column:
                   name: product_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
                   type: BIGINT
               - column:
                   name: version
@@ -151,6 +172,12 @@ databaseChangeLog:
                   name: price
                   type: DOUBLE
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -170,6 +197,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: recipe_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
                   type: BIGINT
               - column:
                   name: version
@@ -193,6 +226,12 @@ databaseChangeLog:
                   name: product_id
                   type: BIGINT
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -214,6 +253,12 @@ databaseChangeLog:
                   name: menu_name
                   type: VARCHAR(200)
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -229,6 +274,12 @@ databaseChangeLog:
                   type: BIGINT
               - column:
                   name: combo_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
                   type: BIGINT
               - column:
                   name: version
@@ -252,6 +303,12 @@ databaseChangeLog:
                   name: recipe_id
                   type: BIGINT
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -267,6 +324,12 @@ databaseChangeLog:
                   type: BIGINT
               - column:
                   name: product_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
                   type: BIGINT
               - column:
                   name: version
@@ -289,6 +352,9 @@ databaseChangeLog:
               - column:
                   name: name_status
                   type: VARCHAR(200)
+              - column:
+                  name: account_id
+                  type: BIGINT
 
   - changeSet:
       id: 14
@@ -320,6 +386,9 @@ databaseChangeLog:
                   name: min_price_order
                   type: DOUBLE
               - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
                   name: version
                   type: integer
 
@@ -339,6 +408,9 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: order_status_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
                   type: BIGINT
               - column:
                   name: version
@@ -377,13 +449,44 @@ databaseChangeLog:
       changes:
         - createTable:
             - tableName: role
-            - column:
-                name: id
-                type: BIGINT
-                autoIncrement: true
-                constraints:
-                  primaryKey: true
-                  nullable: false
-            - column:
-                name: name
-                type: varchar(200)
+            - columns:
+                - column:
+                    name: id
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: name
+                    type: varchar(200)
+                - column:
+                    name: version
+                    type: integer
+
+  - changeSet:
+      id: 19
+      author: vshabaev
+      changes:
+        - createTable:
+            - tableName: point_sales
+            - columns:
+                - column:
+                    name: id
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: account_id
+                    type: BIGINT
+                - column:
+                    name: name
+                    type: VARCHAR
+                - column:
+                    name: address
+                    type: VARCHAR
+                - column:
+                    name: version
+                    type: integer

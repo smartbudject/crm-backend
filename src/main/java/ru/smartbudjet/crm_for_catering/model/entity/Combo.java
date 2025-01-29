@@ -14,10 +14,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -40,6 +43,12 @@ public class Combo extends AbstractEntity {
             joinColumns = {@JoinColumn(name = "combo", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "product", referencedColumnName = "id")})
     private Set<Product> products = new HashSet<>();
+
+    @ManyToOne
+    private Account account;
+
+    @ManyToOne
+    private PointSales pointSales;
 
 
     public void setRecipes(Set<Recipe> recipes) {

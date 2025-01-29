@@ -1,14 +1,20 @@
 package ru.smartbudjet.crm_for_catering.model.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Value;
-
 import java.time.LocalDateTime;
 
-@Data
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -31,11 +37,7 @@ public class Account extends AbstractEntity{
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Version
-    private Integer version;
 
-    public Account setId(Long id) {
-        super.setId(id);
-        return this;
-    }
+
+
 }

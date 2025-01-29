@@ -2,6 +2,7 @@ package ru.smartbudjet.crm_for_catering.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,17 +17,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
-public class Client extends AbstractEntity {
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone")
-    private String phone;
-    @Column(name = "age")
-    private Integer age;
-    @Column(name = "gender")
-    private String gender;
+@Table(name = "order_status")
+public class OrderStatus extends AbstractEntity {
 
-    @ManyToOne
+    @Column(name = "name_status")
+    private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Account account;
 }

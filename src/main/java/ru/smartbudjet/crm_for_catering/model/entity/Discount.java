@@ -16,16 +16,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
-public class Product extends AbstractEntity {
-    @Column(name = "name_product")
-    private String nameProduct;
-    private Integer count;
-    private Double price;
+@Table(name = "discount")
+public class Discount extends AbstractEntity {
 
-    @ManyToOne
-    private Account account;
+    @Column(name = "discount_name")
+    private String discountName;
+
+    @Column(name = "discount_type")
+    private String discountType;
+
+    @Column(name = "discount_session")
+    private String discountSession;
+
+    private Double discount;
+
+    @Column(name = "min_price_order")
+    private Double minPriceOrder;
 
     @ManyToOne
     private PointSales pointSales;
+
 }

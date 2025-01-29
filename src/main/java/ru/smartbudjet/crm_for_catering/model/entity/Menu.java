@@ -10,13 +10,17 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -43,6 +47,12 @@ public class Menu extends AbstractEntity {
             joinColumns = {@JoinColumn(name = "menu", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "product", referencedColumnName = "id")})
     private Set<Product> products = new HashSet<>();
+
+    @ManyToOne
+    private PointSales pointSales;
+
+    @ManyToOne
+    private Account account;
 
 
     public void setProducts(Set<Product> products) {

@@ -1,7 +1,8 @@
 package ru.smartbudjet.crm_for_catering.model.entity;
 
-import java.util.HashSet;
 import java.util.Set;
+
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -23,18 +24,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "recipe")
-public class Recipe extends AbstractEntity {
+@Table(name = "order")
+public class Order extends AbstractEntity {
 
-    private String name;
-    private Double price;
+    @ManyToOne
+    private OrderStatus status;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(name = "recipe_product",
-            joinColumns = {@JoinColumn(name = "recipe", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "product", referencedColumnName = "id")})
-    private Set<Product> products = new HashSet<>();
-
+    @JoinTable(name = "order_item",
+            joinColumns = {@JoinColumn(name = "order", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "item", referencedColumnName = "id")})
+    private Set<OrderItem> items;
 
     @ManyToOne
     private Account account;
@@ -43,13 +43,13 @@ public class Recipe extends AbstractEntity {
     private PointSales pointSales;
 
 
-    public void setProducts(Set<Product> products) {
-        if (products != null) {
-            if (this.products == null) {
-                this.products = products;
+    public void setItems(Set<OrderItem> items) {
+        if (items != null) {
+            if (this.items == null) {
+                this.items = items;
             } else {
-                this.products.clear();
-                this.products.addAll(products);
+                this.items.clear();
+                this.items.addAll(items);
             }
         }
     }
