@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core:4.29.2")
-	implementation("org.mapstruct:mapstruct:1.6.3")
+	implementation("org.modelmapper:modelmapper:3.1.1")
 	implementation("com.auth0:java-jwt:4.4.0")
 	implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
 
@@ -45,8 +45,4 @@ dependencies {
 	testImplementation("org.testcontainers:postgresql")
 
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
 }
