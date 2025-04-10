@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine    # Оптимизирован для ARM (меньший размер)
+    platform: linux/arm64        # Явное указание архитектуры (arm64/v8)
+    container_name: postgres_arm
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_arm:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data_arm:
