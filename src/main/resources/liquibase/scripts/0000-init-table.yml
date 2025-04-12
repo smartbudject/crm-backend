@@ -1,0 +1,473 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: account
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(200)
+              - column:
+                  name: password
+                  type: VARCHAR(200)
+              - column:
+                  name: username
+                  type: VARCHAR(200)
+              - column:
+                  name: version
+                  type: integer
+              - column:
+                  name: is_delete
+                  type: BOOLEAN
+              - column:
+                  name: role_id
+                  type: BIGINT
+
+  - changeSet:
+      id: 2
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(200)
+              - column:
+                  name: phone
+                  type: VARCHAR(200)
+              - column:
+                  name: age
+                  type: INTEGER
+              - column:
+                  name: gender
+                  type: BOOLEAN
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 3
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_product
+                  type: VARCHAR(200)
+              - column:
+                  name: count
+                  type: INTEGER
+              - column:
+                  name: price
+                  type: DOUBLE
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 4
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: recipe
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(200)
+              - column:
+                  name: price
+                  type: DOUBLE
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 5
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: recipe_product
+            columns:
+              - column:
+                  name: recipe_id
+                  type: BIGINT
+              - column:
+                  name: product_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+
+  - changeSet:
+      id: 6
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: combo
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: combo_name
+                  type: VARCHAR(200)
+              - column:
+                  name: price
+                  type: DOUBLE
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 7
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: combo_recipe
+            columns:
+              - column:
+                  name: combo_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: recipe_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+
+  - changeSet:
+      id: 8
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: combo_product
+            columns:
+              - column:
+                  name: combo_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+
+  - changeSet:
+      id: 9
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: menu
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: menu_name
+                  type: VARCHAR(200)
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 10
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: menu_combo
+            columns:
+              - column:
+                  name: menu_id
+                  type: BIGINT
+              - column:
+                  name: combo_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+
+  - changeSet:
+      id: 11
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: menu_recipe
+            columns:
+              - column:
+                  name: menu_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: recipe_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+  - changeSet:
+      id: 12
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: menu_product
+            columns:
+              - column:
+                  name: menu_id
+                  type: BIGINT
+              - column:
+                  name: product_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+
+  - changeSet:
+      id: 13
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: order_status
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name_status
+                  type: VARCHAR(200)
+              - column:
+                  name: account_id
+                  type: BIGINT
+
+  - changeSet:
+      id: 14
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: discount
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: discount_name
+                  type: VARCHAR
+              - column:
+                  name: discount_type
+                  type: VARCHAR
+              - column:
+                  name: discount_session
+                  type: VARCHAR
+              - column:
+                  name: discount
+                  type: DOUBLE
+              - column:
+                  name: min_price_order
+                  type: DOUBLE
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 15
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: order
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: order_status_id
+                  type: BIGINT
+              - column:
+                  name: point_sales_id
+                  type: BIGINT
+              - column:
+                  name: version
+                  type: integer
+
+  - changeSet:
+      id: 16
+      author: vshabaev
+      changes:
+        - createTable:
+            tableName: order_item
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: order_id
+                  type: BIGINT
+              - column:
+                  name: client_id
+                  type: BIGINT
+              - column:
+                  name: menu_id
+                  type: BIGINT
+
+  - changeSet:
+      id: 17
+      author: vshabaev
+      changes:
+        - createTable:
+            - tableName: role
+            - columns:
+                - column:
+                    name: id
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: name
+                    type: varchar(200)
+
+  - changeSet:
+      id: 19
+      author: vshabaev
+      changes:
+        - createTable:
+            - tableName: point_sales
+            - columns:
+                - column:
+                    name: id
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: account_id
+                    type: BIGINT
+                - column:
+                    name: name
+                    type: VARCHAR
+                - column:
+                    name: address
+                    type: VARCHAR
+                - column:
+                    name: version
+                    type: integer
