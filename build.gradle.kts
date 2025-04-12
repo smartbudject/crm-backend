@@ -32,6 +32,8 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.6.3")
     implementation("org.mapstruct:mapstruct-processor:1.6.3")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
+    implementation("io.swagger.core.v3:swagger-annotations-jakarta:2.2.30")
+    implementation ("io.jsonwebtoken:jjwt-api:0.11.5")
 
     compileOnly("org.projectlombok:lombok")
 
