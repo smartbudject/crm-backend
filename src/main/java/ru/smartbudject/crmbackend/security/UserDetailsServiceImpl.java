@@ -14,18 +14,18 @@ import ru.smartbudject.crmbackend.repository.AccountRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final AccountRepository userRepository;
+    private final AccountRepository accountRepository;
 
 
-    public UserDetailsServiceImpl(AccountRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailsServiceImpl(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<Account> accountOpt = userRepository.getAllAccounts()
+        Optional<Account> accountOpt = accountRepository.findAll()
                 .stream()
                 .filter(account -> account.getUsername()
                         .equals(username))
