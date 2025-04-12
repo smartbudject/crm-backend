@@ -6,7 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -14,6 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "role")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
 
     @Id
@@ -22,4 +28,5 @@ public class Role {
 
     @Column(name = "name")
     private String name;
+
 }
