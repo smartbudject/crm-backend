@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.controller;
+package ru.smartbudject.crmbackend.controller.account;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

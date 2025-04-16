@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.controller;
+package ru.smartbudject.crmbackend.controller.account;
 
 import java.util.List;
 

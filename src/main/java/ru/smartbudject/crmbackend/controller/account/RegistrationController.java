@@ -1,12 +1,10 @@
-package ru.smartbudject.crmbackend.controller;
+package ru.smartbudject.crmbackend.controller.account;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +16,6 @@ import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.security.JwtService;
 import ru.smartbudject.crmbackend.security.UserDetailsImpl;
 import ru.smartbudject.crmbackend.service.UserService;
-import ru.smartbudject.crmbackend.service.user.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
