@@ -52,6 +52,9 @@ public abstract class AbstractMainTest {
     @MockitoBean
     protected UserService userService;
 
+    @Autowired
+    protected EntityUtils entityUtils;
+
 
     /**
      * Create mock mvc.

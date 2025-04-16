@@ -1,0 +1,10 @@
+package ru.smartbudject.crmbackend.model.dto.pointsales;
+
+import lombok.Data;
+
+
+@Data
+public class PointSalesDTO {
+
+    private Long id;
+}

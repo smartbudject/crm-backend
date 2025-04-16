@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.smartbudject.crmbackend.mapper.account.AccountMapper;
-import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
+import ru.smartbudject.crmbackend.model.dto.account.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.Role;
 import ru.smartbudject.crmbackend.repository.AccountRepository;

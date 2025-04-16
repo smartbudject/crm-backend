@@ -1,0 +1,8 @@
+{
+  "nameProduct": "Milk",
+  "count": 2,
+  "price": 10.00,
+  "pointSales": {
+    "id": 1
+  }
+}

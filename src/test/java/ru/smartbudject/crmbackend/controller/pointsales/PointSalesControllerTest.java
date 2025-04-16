@@ -25,8 +25,7 @@ import ru.smartbudject.crmbackend.repository.PointSalesRepository;
 
 public class PointSalesControllerTest extends AbstractMainTest {
 
-    @Autowired
-    private EntityUtils entityUtils;
+
 
     @Autowired
     private PointSalesRepository pointSalesRepository;

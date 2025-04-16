@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.smartbudject.crmbackend.model.dto.SingInRequestDTO;
-import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
+import ru.smartbudject.crmbackend.model.dto.account.SingInRequestDTO;
+import ru.smartbudject.crmbackend.model.dto.account.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.security.JwtService;
 import ru.smartbudject.crmbackend.security.UserDetailsImpl;

@@ -3,7 +3,7 @@ package ru.smartbudject.crmbackend.mapper.account;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
+import ru.smartbudject.crmbackend.model.dto.account.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 
 

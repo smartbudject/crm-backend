@@ -41,6 +41,7 @@ public class EntityUtils {
         pointSales.setName("Point 1");
         pointSales.setAddress("Moscow");
         pointSales.setAccount(account);
+        pointSales.setVersion(1);
         return pointSalesRepository.save(pointSales);
     }
 
