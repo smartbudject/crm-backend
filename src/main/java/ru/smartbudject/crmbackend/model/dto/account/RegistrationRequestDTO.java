@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.model.dto;
+package ru.smartbudject.crmbackend.model.dto.account;
 
 import lombok.Data;
 
