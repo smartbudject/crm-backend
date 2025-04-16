@@ -61,7 +61,7 @@ class RegistrationControllerTest extends AbstractMainTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/api/registration")
+                                .post("/api/user/registration")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(json)
                 )

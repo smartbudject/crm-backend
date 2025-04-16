@@ -20,7 +20,6 @@ import lombok.Getter;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
 @TestInstance(Lifecycle.PER_CLASS)
 public abstract class AbstractMainTest {
 

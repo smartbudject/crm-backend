@@ -3,6 +3,7 @@ package ru.smartbudject.crmbackend.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,9 +44,15 @@ public class RegistrationController {
 
     @PostMapping("/sing-in")
     public ResponseEntity<?> singIn(@RequestBody SingInRequestDTO loginRequestDTO) {
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
+        Authentication authentication ;
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
 
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.badRequest()
+                    .build();
+        }
         final Account account = ((UserDetailsImpl) authentication.getPrincipal()).getUser();
 
         if (Boolean.TRUE.equals(account.getIsDelete())) {
@@ -55,13 +62,6 @@ public class RegistrationController {
 
         return ResponseEntity.ok(jwtService.generateToken(account.getEmail(), account.getRole()
                 .getName(), account.getUsername()));
-    }
-
-
-    @GetMapping("/getRole")
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    public ResponseEntity<String> getRole() {
-        return ResponseEntity.ok("ROLE_ADMIN");
     }
 
 }

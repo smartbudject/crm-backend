@@ -27,12 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         Optional<Account> accountOpt = accountRepository.findAll()
                 .stream()
-                .filter(account -> account.getUsername()
+                .filter(account -> account.getEmail()
                         .equals(username))
                 .findFirst();
 
         if (accountOpt.isEmpty()) {
-            throw new UsernameNotFoundException("No find username");
+            throw new UsernameNotFoundException("No find account");
         } else {
             return new UserDetailsImpl(accountOpt.get());
         }
