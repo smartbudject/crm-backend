@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.PointSales;
@@ -22,6 +23,7 @@ public class EntityUtils {
     private PointSalesRepository pointSalesRepository;
 
 
+    @Transactional
     public Optional<Account> getUser(final long IdRole) {
         Account account = new Account();
         account.setUsername("admin");
@@ -33,6 +35,7 @@ public class EntityUtils {
     }
 
 
+    @Transactional
     public PointSales getPointSales(final Account account) {
         PointSales pointSales = new PointSales();
         pointSales.setName("Point 1");

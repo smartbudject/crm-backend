@@ -7,4 +7,6 @@ public interface PointSalesService {
 
     Long addPointSales(AddPointSalesRequest addPointSalesRequest);
 
+    Long updatePointSales(AddPointSalesRequest addPointSalesRequest, Long id);
+
 }

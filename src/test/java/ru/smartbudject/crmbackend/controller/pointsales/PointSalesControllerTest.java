@@ -2,12 +2,14 @@ package ru.smartbudject.crmbackend.controller.pointsales;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -18,12 +20,17 @@ import ru.smartbudject.crmbackend.CommonUtils;
 import ru.smartbudject.crmbackend.EntityUtils;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.PointSales;
+import ru.smartbudject.crmbackend.repository.PointSalesRepository;
+import ru.smartbudject.crmbackend.service.PointSalesService;
 
 
 public class PointSalesControllerTest extends AbstractMainTest {
 
     @Autowired
     private EntityUtils entityUtils;
+
+    @Autowired
+    private PointSalesRepository pointSalesRepository;
 
 
     @Test
@@ -60,12 +67,22 @@ public class PointSalesControllerTest extends AbstractMainTest {
         String updateJson = CommonUtils.getJsonFromResource("controller/pointsales/UpdatePointSalesRequest.json");
 
 
-        mockMvc.perform(MockMvcRequestBuilders.put("api/point-sales/" + pointSales.getId())
+        final ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/point-sales/" + pointSales.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updateJson))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status()
                         .isOk());
+
+        Long id = Long.parseLong(resultActions.andReturn()
+                .getResponse()
+                .getContentAsString());
+
+        final PointSales pointSalesSaved = pointSalesRepository.findById(id)
+                .orElse(null);
+        Assertions.assertNotNull(pointSalesSaved);
+        Assertions.assertNotEquals("Moscow", pointSalesSaved.getAddress());
+        Assertions.assertNotEquals("Point 1", pointSalesSaved.getName());
     }
 
 }

@@ -1,5 +1,6 @@
 package ru.smartbudject.crmbackend.service.pointsales;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,22 @@ public class PointSalesServiceImpl implements PointSalesService {
         final PointSales pointSales = pointSalesMapper.mapAdd(addPointSalesRequest);
         pointSales.setAccount(userService.tryGetAuthenticated()
                 .orElseThrow(EntityNotFoundException::new));
+        return pointSalesRepository.save(pointSales).getId();
+    }
+
+
+    @Override
+    @Transactional
+    public Long updatePointSales(final AddPointSalesRequest addPointSalesRequest, final Long id) {
+        final PointSales pointSales = pointSalesRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        if (!pointSales.getAccount().equals(userService.tryGetAuthenticated().get())) {
+            throw new EntityNotFoundException();
+        }
+
+        pointSales.setName(addPointSalesRequest.getName());
+        pointSales.setAddress(addPointSalesRequest.getAddress());
         return pointSalesRepository.save(pointSales).getId();
     }
 

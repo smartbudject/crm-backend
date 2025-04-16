@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class AddPointSalesRequest {
     private String name;
-    private String description;
+    private String address;
 }
