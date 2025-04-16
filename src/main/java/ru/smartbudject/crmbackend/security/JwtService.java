@@ -22,9 +22,9 @@ public class JwtService {
     private static final long EXPIRATION_TIME = 86400000; // 24 часа
 
 
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername());
+    public String generateToken(final String email, final String roleName, final String username) {
+        Map<String, Object> claims = Map.of("email", email, "role", roleName);
+        return createToken(claims, username);
     }
 
 
