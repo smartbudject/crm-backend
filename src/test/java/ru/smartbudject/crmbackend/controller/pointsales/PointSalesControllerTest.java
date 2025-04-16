@@ -21,7 +21,6 @@ import ru.smartbudject.crmbackend.EntityUtils;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.PointSales;
 import ru.smartbudject.crmbackend.repository.PointSalesRepository;
-import ru.smartbudject.crmbackend.service.PointSalesService;
 
 
 public class PointSalesControllerTest extends AbstractMainTest {
