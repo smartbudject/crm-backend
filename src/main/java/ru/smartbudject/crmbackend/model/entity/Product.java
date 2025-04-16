@@ -17,7 +17,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "point_sales")
+@Table(name = "product")
 @Getter
 @Setter
 @AllArgsConstructor
