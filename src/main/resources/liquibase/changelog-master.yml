@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: scripts/0000-init-table.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0002-init-seq-tables.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0003-init-data.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0004-alter-table-account-add-new-column.yml
+      relativeToChangelogFile: true

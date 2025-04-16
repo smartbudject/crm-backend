@@ -1,0 +1,97 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: account_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 2
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: client_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 3
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: product_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 4
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: recipe_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 5
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: combo_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 6
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: menu_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 7
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: order_status_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 8
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: discount_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 9
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: order_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 10
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: order_item_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 11
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: role_seq
+            startValue: 1
+            incrementBy: 1
+  - changeSet:
+      id: 12
+      author: vshabaev
+      changes:
+        - createSequence:
+            sequenceName: point_sales_seq
+            startValue: 1
+            incrementBy: 1
