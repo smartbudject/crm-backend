@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.service.registration;
+package ru.smartbudject.crmbackend.service.user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.Role;
 import ru.smartbudject.crmbackend.repository.AccountRepository;
-import ru.smartbudject.crmbackend.service.RegistrationService;
+import ru.smartbudject.crmbackend.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 
 @Service
 @RequiredArgsConstructor
-public class RegistrationServiceImpl implements RegistrationService {
+public class UserServiceImpl implements UserService {
 
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;

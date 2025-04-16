@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
-import ru.smartbudject.crmbackend.service.RegistrationService;
+import ru.smartbudject.crmbackend.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final RegistrationService registrationService;
+    private final UserService registrationService;
 
 
 
