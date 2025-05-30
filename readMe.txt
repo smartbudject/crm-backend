@@ -13,3 +13,4 @@
 	    - в application.yml, строка  url: jdbc:postgresql://localhost:5555/catering
 - запуск докера
 - запуск 
+- localhost:8080/
