@@ -1,0 +1,15 @@
+databaseChangeLog:
+    - changeSet:
+          id: set-menu-item-null-on-delete
+          author: umar
+          changes:
+              - dropForeignKeyConstraint:
+                    baseTableName: order_menu_item
+                    constraintName: fk_order_menu_item_menu_item
+              - addForeignKeyConstraint:
+                    baseTableName: order_menu_item
+                    baseColumnNames: menu_item_id
+                    constraintName: fk_order_menu_item_menu_item
+                    referencedTableName: menu_item
+                    referencedColumnNames: id
+                    onDelete: SET NULL

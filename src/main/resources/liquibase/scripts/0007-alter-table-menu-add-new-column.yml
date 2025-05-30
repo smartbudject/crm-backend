@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: umar
+      changes:
+        - addColumn:
+            tableName: menu
+            columns:
+              - column:
+                  name: picture_file_name
+                  type: VARCHAR(200)

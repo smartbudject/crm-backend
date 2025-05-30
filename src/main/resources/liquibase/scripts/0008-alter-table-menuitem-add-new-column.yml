@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: umar
+      changes:
+        - addColumn:
+            tableName: menu_item
+            columns:
+              - column:
+                  name: picture_file_name
+                  type: VARCHAR(200)
+  - changeSet:
+      id: add_menu_fk_to_menuitem
+      author: umar
+      changes:
+        - addColumn:
+            tableName: menu_item
+            columns:
+              - column:
+                  name: menu_id
+                  type: BIGINT
+                  remarks: "Reference to menu table"
+                  constraints:
+                    nullable: false
+
+        # Then add the foreign key constraint
+        - addForeignKeyConstraint:
+            baseTableName: menu_item           # The table containing the FK
+            baseColumnNames: menu_id       # The new column we just added
+            constraintName: fk_menuitem_menu  # Name for the constraint
+            referencedTableName: menu     # The referenced table
+            referencedColumnNames: id      # The referenced column
+#            deferrable: false
+#            initiallyDeferred: false
+            onDelete: CASCADE             # Optional: what happens when referenced row is deleted
+            onUpdate: CASCADE             # Optional: what happens when referenced row is updated
+            validate: true                 # Whether to validate existing data

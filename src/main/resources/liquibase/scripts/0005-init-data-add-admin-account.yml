@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vshabaev*
+      changes:
+        - insert:
+            tableName: account
+            columns:
+              - column:
+                  name: email
+                  value: admin@gmail.com
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+#                  pswd - admin
+                  value: $2a$12$yR78LNir/Wi1fOK.RAHiLu3Nocv83reaeb.B4LSb5IDX16aUSpDv2
+              - column:
+                  name: is_delete
+                  value: false
+              - column:
+                  name: role_id
+                  value: 2
