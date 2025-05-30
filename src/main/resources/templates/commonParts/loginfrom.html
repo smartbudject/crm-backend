@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="form(isloginpage)" class="col-sm-3">
+    <div th:if="not ${isloginpage}" class="mb-5">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input required type="email" id="email" class="form-control" name="email">
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">Пользователь</label>
+        <input required type="text" id="username" class="form-control" name="username">
+    </div>
+    <div class="mb-5">
+        <label for="password" class="form-label">Пароль</label>
+        <input required type="password" id="password" name="password" class="form-control">
+<!--        <div th:if="not ${isloginpage}" class="my-3">-->
+<!--            <label for="password2" class="form-label">Повторение пароля</label>-->
+<!--            <input required type="password" id="password2" name="password2" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="my-2">-->
+<!--            <a th:if="${isloginpage}" class="form-label float-end" th:href="@{/forgot}">Забыли пароль?</a>-->
+<!--        </div>-->
+    </div>
+    <div class="mt-2 from-actions">
+        <button type="submit" class="btn btn-primary" th:text="${isloginpage} ? 'Войти':'Зарегестрироваться'"></button>
+        <a th:if="${isloginpage}" class="btn btn-secondary" th:href="@{/registration}">Зарегистрироваться</a>
+    </div>
+</div>
+</html>
