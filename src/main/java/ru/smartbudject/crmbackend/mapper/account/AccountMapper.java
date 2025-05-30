@@ -1,8 +1,7 @@
-package ru.smartbudject.crmbackend.mapper.account;
+package ru.smartbudject.crmbackend.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
-
 import ru.smartbudject.crmbackend.model.dto.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 
