@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.security;
+package ru.smartbudject.crmbackend.config.security;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package ru.smartbudject.crmbackend.security;
+package ru.smartbudject.crmbackend.config.security;
 
 import java.util.Optional;
 
@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         Optional<Account> accountOpt = accountRepository.findAll()
                 .stream()
-                .filter(account -> account.getEmail()
+                .filter(account -> account.getUsername()
                         .equals(username))
                 .findFirst();
 

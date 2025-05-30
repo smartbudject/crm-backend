@@ -1,7 +1,6 @@
-package ru.smartbudject.crmbackend.security;
+package ru.smartbudject.crmbackend.config.security;
 
-import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 
 @EnableWebSecurity
@@ -35,17 +34,28 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .formLogin(AbstractHttpConfigurer::disable)
-                .logout(AbstractHttpConfigurer::disable)
+//                .formLogin(AbstractHttpConfigurer::disable)
+//                .logout(AbstractHttpConfigurer::disable)
+                .formLogin(formLoginConfigurer ->
+                        formLoginConfigurer.loginPage("/login")
+                                .permitAll())
+                .logout(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**").permitAll()
-                        .anyRequest().permitAll()
+                                .requestMatchers("/swagger-ui.html",
+                                        "/v2/api-docs",
+                                        "/webjars/**",
+                                        "/static/**",
+                                        "/upload/**",
+                                        "/registration").permitAll()
+                                .anyRequest().authenticated()
+//                        .anyRequest().permitAll()
                 )
                 .sessionManagement(
                         (sessionManagement) -> sessionManagement
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
                 .addFilterBefore(new JwtRequestFilter(jwtService, userDetailsService), UsernamePasswordAuthenticationFilter.class)
                 .build();
