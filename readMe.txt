@@ -11,3 +11,5 @@
 		                       ports:
 									- "5555:5432"
 	    - в application.yml, строка  url: jdbc:postgresql://localhost:5555/catering
+- запуск докера
+- запуск 
