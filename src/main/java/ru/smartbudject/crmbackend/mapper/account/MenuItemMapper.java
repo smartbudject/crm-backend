@@ -9,6 +9,10 @@ public class MenuItemMapper {
 
     public MenuItemDTO mapToDTO(MenuItem menuItemEntity){
         MenuItemDTO menuItemDTO = new MenuItemDTO();
+        if(menuItemEntity == null){
+            menuItemDTO.setName("Position deleted!");
+            return menuItemDTO;
+        }
         menuItemDTO.setId(menuItemEntity.getId());
         menuItemDTO.setName(menuItemEntity.getName());
         menuItemDTO.setDescription(menuItemEntity.getDescription());
