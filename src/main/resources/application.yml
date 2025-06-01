@@ -39,3 +39,26 @@ spring:
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
     enabled: true
+
+logging:
+  level:
+    root: INFO
+    ru:
+      smartbudject:
+        crmbackend:
+          TRACE
+    com:
+      zaxxer:
+        hikari: INFO
+    liquibase: INFO
+    org:
+      springframework:
+        web: INFO
+        security: INFO
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+              BasicExtractor: TRACE
+        SQL: DEBUG
