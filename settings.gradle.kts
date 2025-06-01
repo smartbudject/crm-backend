@@ -1,1 +1,1 @@
-rootProject.name = "crm-for-catering"
+rootProject.name = "crm-backend"

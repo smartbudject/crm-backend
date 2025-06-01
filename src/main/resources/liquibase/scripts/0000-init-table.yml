@@ -147,9 +147,7 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
+
 
   - changeSet:
       id: 6
@@ -204,9 +202,7 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
+
 
   - changeSet:
       id: 8
@@ -231,9 +227,7 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
+
 
   - changeSet:
       id: 9
@@ -281,9 +275,7 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
+
 
   - changeSet:
       id: 11
@@ -308,9 +300,6 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
 
   - changeSet:
       id: 12
@@ -331,9 +320,7 @@ databaseChangeLog:
               - column:
                   name: account_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
+
 
   - changeSet:
       id: 13
@@ -439,9 +426,6 @@ databaseChangeLog:
               - column:
                   name: menu_id
                   type: BIGINT
-              - column:
-                  name: version
-                  type: integer
 
   - changeSet:
       id: 17
@@ -460,9 +444,6 @@ databaseChangeLog:
                 - column:
                     name: name
                     type: varchar(200)
-                - column:
-                    name: version
-                    type: integer
 
   - changeSet:
       id: 19

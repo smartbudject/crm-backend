@@ -11,3 +11,24 @@ databaseChangeLog:
   - include:
       file: scripts/0004-alter-table-account-add-new-column.yml
       relativeToChangelogFile: true
+  - include:
+      file: scripts/0005-init-data-add-admin-account.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0006-init-table-menu-item.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0007-alter-table-menu-add-new-column.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0008-alter-table-menuitem-add-new-column.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0009-init-tables-order.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0010-alter-table-order-menu-item.yml
+      relativeToChangelogFile: true
+  - include:
+      file: scripts/0011-alter-table-menu-item.yml
+      relativeToChangelogFile: true
