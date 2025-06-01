@@ -35,7 +35,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry
                 .addResourceHandler("/upload/**")
-                .addResourceLocations("file:/" + uploadFilesPath + "/")
+                .addResourceLocations("file://" + uploadFilesPath + "/")
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
     }
