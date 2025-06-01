@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "bd88ad25-1378-4b7d-b87b-d9d286b1988f",
+		"name": "Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45173699",
+		"_collection_link": "https://umar-2424397.postman.co/workspace/Umar's-Workspace~ff377f77-c7db-4b76-80de-557e19479688/collection/45173699-bd88ad25-1378-4b7d-b87b-d9d286b1988f?action=share&source=collection_link&creator=45173699"
+	},
+	"item": [
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

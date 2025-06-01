@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="~{commonParts/common.html::header}">
+</head>
+<body>
+<div>
+    <div th:insert="~{commonParts/common.html::body}"></div>
+    <div class="container">
+        <h1>ЗАКАЗЫ!</h1>
+        <p></p>
+        <h2 th:text="${messages}"></h2>
+        <h3 class="alert-danger" th:text="${error}"></h3>
+    </div>
+
+
+    <div th:each="order_iteration:${orders}">
+        <div class="mt-4 p-3 bg-light rounded">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mb-3">
+                    <p sec:authorize="hasAuthority('ROLE_ADMIN')" class="mb-1" th:text="'Клиент: ' + ${order_iteration.clientUsername}"></p>
+                    <p class="mb-1" th:text="'Количество позиций: ' + ${order_iteration.orderItems.size()}"></p>
+                    <p class="mb-1" th:text="'Общая сумма: ' + ${order_iteration.orderTotalPrice} + ' ₽'"></p>
+                    <!-- Display order contents -->
+                    <div th:each="item : ${order_iteration.orderItems}">
+                        <span th:text="${item.menuItemDTO.name}"></span>
+                        <span th:text="${item.quantity}"></span>
+                    </div>
+                    <!--                    </div>-->
+
+                </div>
+                <form th:action="@{/order/delete}" method="post" sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <input type="hidden" name="orderId" th:value="${order_iteration.id}">
+                    <button type="submit" class="btn btn-danger btn-lg w-100">
+                        <i class="bi bi-x-circle"></i> x
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

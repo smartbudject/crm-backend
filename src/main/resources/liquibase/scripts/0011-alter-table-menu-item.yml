@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: umar
+      changes:
+        - addDefaultValue:
+            tableName: menu_item
+            columnName: price
+            defaultValue: 0
+  - changeSet:
+      id: 2
+      author: umar
+      changes:
+        - addNotNullConstraint:
+            tableName: menu_item
+            columnName: price
+            columnDataType: integer
