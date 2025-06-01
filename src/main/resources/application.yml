@@ -1,6 +1,7 @@
 #path for upload files (menu position pic for example)
 #!!!!!! PATH must be outside project
-upload.path: ${UPLOAD_PATH:E:\projects\upload}
+upload:
+  path: ${UPLOAD_PATH:E:\projects\upload}
 
 spring:
   application:
@@ -16,10 +17,9 @@ spring:
       max-request-size: 20MB
       enabled: true
   datasource:
-#    url: jdbc:postgresql://localhost:5432/catering
-    url: jdbc:postgresql://localhost:5555/catering
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5555/catering}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: ${DB_MAX_POOL_SIZE:10}
@@ -39,3 +39,26 @@ spring:
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
     enabled: true
+
+logging:
+  level:
+    root: INFO
+    ru:
+      smartbudject:
+        crmbackend:
+          TRACE
+    com:
+      zaxxer:
+        hikari: INFO
+    liquibase: INFO
+    org:
+      springframework:
+        web: INFO
+        security: INFO
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+              BasicExtractor: TRACE
+        SQL: DEBUG
