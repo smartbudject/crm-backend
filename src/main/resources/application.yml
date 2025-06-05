@@ -23,3 +23,9 @@ spring:
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
     enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

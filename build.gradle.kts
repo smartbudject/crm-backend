@@ -34,6 +34,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
     implementation("io.swagger.core.v3:swagger-annotations-jakarta:2.2.30")
     implementation ("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.4.4")
 
     compileOnly("org.projectlombok:lombok")
 
