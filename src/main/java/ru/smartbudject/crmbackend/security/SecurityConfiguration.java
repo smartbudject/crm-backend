@@ -37,6 +37,7 @@ public class SecurityConfiguration {
 
     /**
      * Настройка фильтров.
+     *
      * @param http
      * @return filter
      * @throws Exception
@@ -49,7 +50,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/init").permitAll()
                         .anyRequest().permitAll()
                 )
                 .sessionManagement(
@@ -62,6 +63,7 @@ public class SecurityConfiguration {
 
     /**
      * Настройка auth менеджера.
+     *
      * @param httpSecurity
      * @return auth manager
      * @throws Exception
@@ -76,6 +78,7 @@ public class SecurityConfiguration {
 
     /**
      * Настройка шифровальшика паролей.
+     *
      * @return passwordEndcoder
      */
     @Bean
@@ -85,6 +88,7 @@ public class SecurityConfiguration {
 
     /**
      * Настройка cors.
+     *
      * @return cors config
      */
     @Bean
