@@ -2,6 +2,8 @@ plugins {
     java
     id("org.springframework.boot") version "3.4.4"
     id("io.spring.dependency-management") version "1.1.7"
+    checkstyle
+    id("pmd")
 }
 
 group = "ru.smartbudject"
@@ -21,6 +23,18 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+// Настройка Checkstyle
+checkstyle {
+    toolVersion = "10.12.4"
+    configDirectory = layout.projectDirectory.dir("config/checkstyle")
+}
+
+// Настройка PMD
+pmd {
+    toolVersion = "6.55.0" // Укажите актуальную версию
+    ruleSetFiles = files("${rootDir}/config/pmd/pmd-ruleset.xml") // Путь к вашему ruleset
 }
 
 dependencies {
@@ -57,4 +71,20 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+
+
+tasks.withType<Pmd>().configureEach {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
+}
+
+tasks.withType<Checkstyle>().configureEach {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
 }
