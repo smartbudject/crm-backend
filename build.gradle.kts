@@ -28,7 +28,12 @@ repositories {
 // Настройка Checkstyle
 checkstyle {
     toolVersion = "10.12.4"
-    configDirectory = layout.projectDirectory.dir("config/checkstyle")
+    configDirectory = file("${rootDir}/config/checkstyle") // Папка с checkstyle.xml, main-checks.xml и т.д.
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml") // Главный файл
+    configProperties = mapOf (
+        "suppressionFile" to  "${rootDir}/config/checkstyle/suppressions.xml",
+        "suppressionXpathFile" to  "${rootDir}/config/checkstyle/suppressions-xpath.xml"
+    )
 }
 
 // Настройка PMD

@@ -23,6 +23,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import lombok.RequiredArgsConstructor;
 
 
+/**
+ * Конфиг для spring boot security.
+ */
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Configuration
@@ -32,8 +35,14 @@ public class SecurityConfiguration {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
 
+    /**
+     * Настройка фильтров.
+     * @param http
+     * @return filter
+     * @throws Exception
+     */
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
@@ -51,27 +60,41 @@ public class SecurityConfiguration {
                 .build();
     }
 
+    /**
+     * Настройка auth менеджера.
+     * @param httpSecurity
+     * @return auth manager
+     * @throws Exception
+     */
     @Bean
-    AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
-        AuthenticationManagerBuilder builder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+    AuthenticationManager authenticationManager(final HttpSecurity httpSecurity) throws Exception {
+        final AuthenticationManagerBuilder builder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
         builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
         return builder.build();
     }
 
+    /**
+     * Настройка шифровальшика паролей.
+     * @return passwordEndcoder
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Настройка cors.
+     * @return cors config
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        final CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(List.of("*"));
         corsConfiguration.setAllowedMethods(List.of("*"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
 
         return source;

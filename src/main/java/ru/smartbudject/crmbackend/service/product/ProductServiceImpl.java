@@ -6,29 +6,35 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.smartbudject.crmbackend.mapper.product.ProductMapper;
 import ru.smartbudject.crmbackend.model.dto.product.AddProductRequest;
 import ru.smartbudject.crmbackend.model.entity.Product;
-import ru.smartbudject.crmbackend.repository.AccountRepository;
 import ru.smartbudject.crmbackend.repository.PointSalesRepository;
 import ru.smartbudject.crmbackend.repository.ProductRepository;
-import ru.smartbudject.crmbackend.service.PointSalesService;
 import ru.smartbudject.crmbackend.service.ProductService;
-import ru.smartbudject.crmbackend.service.UserService;
+import ru.smartbudject.crmbackend.service.AccountService;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
+/**
+ * Сервис взаимодействия с продуктами.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final UserService userService;
+    private final AccountService userService;
     private final ProductMapper productMapper;
     private final PointSalesRepository pointSalesRepository;
 
 
+    /**
+     * Метод добавления продуктов в торговую точку.
+     * @param addProductRequest
+     * @return id
+     */
     @Override
     @Transactional
     public Long addProduct(final AddProductRequest addProductRequest) {

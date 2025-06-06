@@ -13,16 +13,19 @@ import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.model.entity.Role;
 import ru.smartbudject.crmbackend.repository.AccountRepository;
 import ru.smartbudject.crmbackend.security.UserDetailsImpl;
-import ru.smartbudject.crmbackend.service.UserService;
+import ru.smartbudject.crmbackend.service.AccountService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 
 
+/**
+ * Реализация сервиса для взаимодействием аккаунта.
+ */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
@@ -32,6 +35,10 @@ public class UserServiceImpl implements UserService {
 
 
 
+    /**
+     * Метод для регистрации пользователя.
+     * @param registrationRequestDTO
+     */
     @Override
     @Transactional
     public void registration(final RegistrationRequestDTO registrationRequestDTO) {
@@ -40,7 +47,7 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
-        Account account = accountMapper.mapReqistration(registrationRequestDTO);
+        final Account account = accountMapper.mapReqistration(registrationRequestDTO);
         account.setPassword(passwordEncoder.encode(registrationRequestDTO.getPassword()));
         account.setRole(Role.builder()
                 .id(2L)
@@ -50,12 +57,18 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    /**
+     * Метод для получения пользователя из контекста.
+     * @return Optiona<Account>
+     */
     @Override
     public Optional<Account> tryGetAuthenticated() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal == null || principal.equals("anonymousUser")) return Optional.empty();
-        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
-        Account detachedAccount = userDetails.getUser();
+        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal == null || principal.equals("anonymousUser")) {
+            return Optional.empty();
+        }
+        final UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+        final Account detachedAccount = userDetails.user();
         return Optional.ofNullable(entityManager.find(Account.class, detachedAccount.getId()));
     }
 

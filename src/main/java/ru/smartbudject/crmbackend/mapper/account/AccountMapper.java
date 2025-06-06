@@ -10,5 +10,5 @@ import ru.smartbudject.crmbackend.model.entity.Account;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AccountMapper {
 
-    Account mapReqistration(final RegistrationRequestDTO registrationRequestDTO);
+    Account mapReqistration(RegistrationRequestDTO registrationRequestDTO);
 }

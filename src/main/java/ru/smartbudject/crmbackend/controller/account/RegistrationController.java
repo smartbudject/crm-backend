@@ -15,42 +15,60 @@ import ru.smartbudject.crmbackend.model.dto.account.RegistrationRequestDTO;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.security.JwtService;
 import ru.smartbudject.crmbackend.security.UserDetailsImpl;
-import ru.smartbudject.crmbackend.service.UserService;
+import ru.smartbudject.crmbackend.service.AccountService;
 
 import lombok.RequiredArgsConstructor;
 
-
+/**
+ * Контроллер для взаимодействия пользователя.
+ */
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class RegistrationController {
 
 
-    private final UserService registrationService;
+    private final AccountService registrationService;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
-
+    /**
+     * Метод для регистрации.
+     * @param registrationRequestDTO - dto для регистрации.
+     * @return ResponseEntity.
+     */
     @PostMapping("registration")
-    public ResponseEntity<Void> registration(@RequestBody RegistrationRequestDTO registrationRequestDTO) {
+    public ResponseEntity<Void> registration(
+            @RequestBody final RegistrationRequestDTO registrationRequestDTO
+    ) {
         registrationService.registration(registrationRequestDTO);
         return ResponseEntity.ok()
                 .build();
     }
 
 
+    /**
+     * Метод для получения jwt токена.
+     * @param singInRequestDTO - dto
+     * @return jwt
+     */
     @PostMapping("/sing-in")
-    public ResponseEntity<?> singIn(@RequestBody SingInRequestDTO loginRequestDTO) {
-        Authentication authentication ;
+    public ResponseEntity<?> singIn(
+            @RequestBody final SingInRequestDTO singInRequestDTO
+    ) {
+        final Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
+                    new UsernamePasswordAuthenticationToken(
+                            singInRequestDTO.getEmail(),
+                            singInRequestDTO.getPassword()
+                    ));
 
         } catch (BadCredentialsException e) {
             return ResponseEntity.badRequest()
                     .build();
         }
-        final Account account = ((UserDetailsImpl) authentication.getPrincipal()).getUser();
+        final Account account = ((UserDetailsImpl) authentication.getPrincipal()).user();
 
         if (Boolean.TRUE.equals(account.getIsDelete())) {
             return ResponseEntity.badRequest()

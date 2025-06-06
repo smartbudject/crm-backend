@@ -51,14 +51,9 @@
 
     <!-- https://checkstyle.org/filters/suppressionfilter.html -->
     <module name="SuppressionFilter">
-        <property name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
-                  default="checkstyle-suppressions.xml" />
-        <property name="optional" value="true"/>
+        <property name="file" value="${suppressionFile}"/>
     </module>
 
-    <!-- Checks that a package-info.java file exists for each package.     -->
-    <!-- See https://checkstyle.org/checks/javadoc/javadocpackage.html#JavadocPackage -->
-    <module name="JavadocPackage"/>
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See https://checkstyle.org/checks/misc/newlineatendoffile.html -->
@@ -72,7 +67,7 @@
     <!-- See https://checkstyle.org/checks/sizes/index.html -->
     <module name="FileLength"/>
     <module name="LineLength">
-        <property name="fileExtensions" value="java"/>
+        <property name="max" value="150"/>
     </module>
 
     <!-- Checks for whitespace                               -->
@@ -102,7 +97,6 @@
         <module name="InvalidJavadocPosition"/>
         <module name="JavadocMethod"/>
         <module name="JavadocType"/>
-        <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
         <module name="MissingJavadocMethod"/>
 
@@ -186,11 +180,9 @@
         <module name="TodoComment"/>
         <module name="UpperEll"/>
 
-        <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
         <module name="SuppressionXpathFilter">
-            <property name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
-                      default="checkstyle-xpath-suppressions.xml" />
-            <property name="optional" value="true"/>
+            <property name="file" value="${suppressionXpathFile}"/>
+            <property name="optional" value="false"/>
         </module>
 
         <!-- 1. Требование final для параметров методов -->

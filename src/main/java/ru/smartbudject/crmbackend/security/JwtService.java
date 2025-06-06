@@ -1,20 +1,21 @@
 package ru.smartbudject.crmbackend.security;
 
-import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import java.security.Key;
+import java.util.Date;
+import java.util.Map;
+import java.util.function.Function;
 
 
+/**
+ * Сервис для работы с jwt.
+ */
 @Service
 public class JwtService {
 
@@ -22,13 +23,26 @@ public class JwtService {
     private static final long EXPIRATION_TIME = 86400000; // 24 часа
 
 
+    /**
+     * Генерация токена.
+     * @param email
+     * @param roleName
+     * @param username
+     * @return jwt
+     */
     public String generateToken(final String email, final String roleName, final String username) {
-        Map<String, Object> claims = Map.of("email", email, "role", roleName);
+        final Map<String, Object> claims = Map.of("email", email, "role", roleName);
         return createToken(claims, username);
     }
 
 
-    private String createToken(Map<String, Object> claims, String subject) {
+    /**
+     * Создания токена.
+     * @param claims
+     * @param subject
+     * @return jwt
+     */
+    private String createToken(final Map<String, Object> claims, final String subject) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -39,29 +53,57 @@ public class JwtService {
     }
 
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    /**
+     * Валидация токена.
+     * @param token
+     * @param userDetails
+     * @return boolean
+     */
+    public Boolean validateToken(final String token, final UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
 
-    public String extractUsername(String token) {
+    /**
+     * Вытаскиваем имя пользователя.
+     * @param token
+     * @return username
+     */
+    public String extractUsername(final String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
 
-    public Date extractExpiration(String token) {
+    /**
+     * Вытаскиваем дату срока токена.
+     * @param token
+     * @return data
+     */
+    public Date extractExpiration(final String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    /**
+     * Вытаскиваем токен.
+     * @param token
+     * @param claimsResolver
+     * @param <T>
+     * @return claims
+     */
+    private <T> T extractClaim(final String token, final Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
 
-    private Claims extractAllClaims(String token) {
+    /**
+     * Метод для получения claims.
+     * @param token
+     * @return claims
+     */
+    private Claims extractAllClaims(final String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
                 .build()
@@ -70,7 +112,12 @@ public class JwtService {
     }
 
 
-    private Boolean isTokenExpired(String token) {
+    /**
+     * Метод проверки срока токена.
+     * @param token
+     * @return boolean
+     */
+    private Boolean isTokenExpired(final String token) {
         return extractExpiration(token).before(new Date());
     }
 

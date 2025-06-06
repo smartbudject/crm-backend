@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import ru.smartbudject.crmbackend.service.UserService;
+import ru.smartbudject.crmbackend.service.AccountService;
 
 import lombok.Getter;
 
@@ -50,7 +50,7 @@ public abstract class AbstractMainTest {
     protected ObjectMapper mapper;
 
     @MockitoBean
-    protected UserService userService;
+    protected AccountService userService;
 
     @Autowired
     protected EntityUtils entityUtils;

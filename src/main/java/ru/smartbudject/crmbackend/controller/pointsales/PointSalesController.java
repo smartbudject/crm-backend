@@ -15,6 +15,9 @@ import ru.smartbudject.crmbackend.service.PointSalesService;
 import lombok.RequiredArgsConstructor;
 
 
+/**
+ * Контроллер для взаимодействия торговыми точками.
+ */
 @RestController
 @RequestMapping("/api/point-sales")
 @RequiredArgsConstructor
@@ -22,17 +25,35 @@ public class PointSalesController {
 
     private final PointSalesService pointSalesService;
 
+    /**
+     * Метод добавление торговых точек.
+     *
+     * @param addPointSalesRequest
+     * @return id
+     */
     @PostMapping()
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Long> addPointSales(@RequestBody AddPointSalesRequest addPointSalesRequest) {
+    public ResponseEntity<Long> addPointSales(
+            @RequestBody final AddPointSalesRequest addPointSalesRequest
+    ) {
         return ResponseEntity.ok(
                 pointSalesService.addPointSales(addPointSalesRequest)
         );
     }
 
+
+    /**
+     * Метод изменения торговых точек.
+     *
+     * @param addPointSalesRequest - дто
+     * @param id                   - торговой точки
+     * @return id
+     */
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Long> updatePointSales(@RequestBody AddPointSalesRequest addPointSalesRequest, @PathVariable Long id) {
+    public ResponseEntity<Long> updatePointSales(
+            @RequestBody final AddPointSalesRequest addPointSalesRequest,
+            @PathVariable final Long id) {
         return ResponseEntity.ok(
                 pointSalesService.updatePointSales(addPointSalesRequest, id)
         );

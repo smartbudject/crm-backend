@@ -2,33 +2,41 @@ package ru.smartbudject.crmbackend.security;
 
 import java.util.Optional;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.smartbudject.crmbackend.model.entity.Account;
 import ru.smartbudject.crmbackend.repository.AccountRepository;
 
 
+/**
+ * Реализация UserDetailsService.
+ */
 @Service
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final AccountRepository accountRepository;
 
 
-    public UserDetailsServiceImpl(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
-
-
+    /**
+     * Поиск пользователя.
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
 
-        Optional<Account> accountOpt = accountRepository.findAll()
+        final Optional<Account> accountOpt = accountRepository.findAll()
                 .stream()
                 .filter(account -> account.getEmail()
-                        .equals(username))
+                        .equals(email))
                 .findFirst();
 
         if (accountOpt.isEmpty()) {
