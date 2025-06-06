@@ -93,3 +93,13 @@ tasks.withType<Checkstyle>().configureEach {
         html.required.set(true)
     }
 }
+
+tasks.register("codeQualityCheck") {
+    group = "Verification"
+    description = "Run code quality checks (Checkstyle + PMD) for main sources"
+    dependsOn("checkstyleMain", "pmdMain")
+
+    doLast {
+        println("Code quality checks completed")
+    }
+}
